@@ -4,7 +4,8 @@ export default class SurveyForm extends React.Component {
     state = {
         name: "",
         color: "red",
-        country: ""
+        country: "",
+        fruits: []
     }
 
     render (){
@@ -30,8 +31,87 @@ export default class SurveyForm extends React.Component {
                 <option value="id">Indonesia</option>
                 </select>
             </div>
+
+            <div>
+                <label>Fruits</label>
+                <input type="checkbox" name="fruits" value="apple" onChange={this.updateFruits}/><span>apple</span>
+                <input type="checkbox" name="fruits" value="orange" onChange={this.updateFruits}/><span>orange</span>
+                <input type="checkbox" name="fruits" value="durians" onChange={this.updateFruits}/><span>durians</span>
+                <input type="checkbox" name="fruits" value="dragonfruits" onChange={this.updateFruits}/><span>dragonfruits</span>
+            </div>
         </React.Fragment>
         )
+    }
+
+    updateFruits = (evt) => {
+        // if we want to mutate an array that is in the state
+        // we cannot modify it directly. so the following won't work
+        // this.state.fruits.push(evt.target.value)
+
+        //check if the value is already inside the array
+        if (this.state.fruits.includes(evt.target.value)){
+            //the value is inside the array
+
+            //1. clone the array
+            let clone = this.state.fruits.slice();
+
+            //2. remove the element from the array
+            //2a. find the index of the value
+            let index = this.state.fruits.indexOf(evt.target.value)
+            clone.splice(index,1);
+
+            //3. use setState to update the array in state
+            this.setState({
+                fruits: clone
+            })
+
+        } else {
+        // 1. make a copy of the original array
+        let clone = this.state.fruits.slice();
+
+        // 2. change the copy (clone) of the array
+        clone.push(evt.target.value)
+
+        // 3. use setState to update the array in the state
+        this.setState({
+            fruits: clone
+        })
+
+        }
+
+
+    }
+
+    //method 2
+    updateFruitsv2 = (evt) => {
+        if (this.state.fruits.includes(evt.target.value)){
+            let clone = this.state.fruits.slice();
+
+            this.state.fruits.filter(function(f){
+                return f != evt.target.value
+            })
+
+            this.setState({
+                fruits: clone
+            })
+
+
+        } else {
+            let clone = [ ...this.state.fruits]
+
+            clone.push(evt.target.value)
+    
+            this.setState({
+                fruits: clone
+            })
+        }
+
+    }
+    //method 3
+    updateFruitsv3 = (evt) => {
+        this.setState({
+            fruits: [...this.state.fruits, evt.target.value]
+        })
     }
 
     updateName = (evt) => {
