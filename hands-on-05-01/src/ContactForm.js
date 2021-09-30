@@ -7,8 +7,8 @@ export default class ContactForm extends React.Component {
         enquiry: "",
         country: "",
         message: "",
-        isDisable: true
-        }
+        contact: []
+    }
 
     render (){
 
@@ -41,9 +41,46 @@ export default class ContactForm extends React.Component {
                 </select>
             </div>
 
+            <div>
+                <label>How will you like to be contacted</label>
+                <input type="checkbox" name="contactMethod" value="email" onChange={this.updateContact}/><span>Email</span>
+                <input type="checkbox" name="contactMethod" value="phone" onChange={this.updateContact}/><span>Phone</span>
+                <input type="checkbox" name="contactMethod" value="slowMail" onChange={this.updateContact}/><span>Slow Mail</span>
+            </div>
+
             <button onClick={this.message} disabled={!this.state.lastName || !this.state.firstName || !this.state.enquiry || !this.state.country}>Submit</button>
+        
         </React.Fragment>
         )
+    }
+
+    updateContact = (evt) => {
+        //check if contact array contains any of the checked values 
+        if (this.state.contact.includes(evt.target.value)){
+            //1. clone the array
+            let clone = this.state.contact.slice()
+
+            //2. remove it from the array
+            let index = this.state.contact.indexOf(evt.target.value)
+            clone.splice(index,1)
+
+            //3. use setState to update the array in state
+            this.setState({
+                contact: clone
+            })
+        } else {
+            //If not in array then we add it in
+            //1. clone the array
+            let clone = this.state.contact.slice();
+
+            //2. change the copy by adding in the checked value
+            clone.push(evt.target.value)
+
+            //3. use setState to replace the array
+            this.setState({
+                contact: clone
+            })
+        }
     }
 
     updateFormField = (evt) => {
