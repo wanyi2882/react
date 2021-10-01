@@ -1,0 +1,19 @@
+[
+    {
+        "display": "Apples",
+        "value": "apples"
+    },
+    {
+        "display": "Bananas",
+        "value": "bananas"
+    },
+    {
+        "display": "Oranges",
+        "value": "oranges"
+
+    },
+    {
+        "display": "Watermelon",
+        "value":"watermelon"
+    }
+]

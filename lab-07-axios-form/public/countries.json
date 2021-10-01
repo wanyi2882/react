@@ -1,0 +1,22 @@
+[
+    {
+        "display": "Singapore",
+        "value": "sg"
+    },
+    {
+        "display": "Malaysia",
+        "value": "my"
+    },
+    {
+        "display": "Indonesia",
+        "value": "in"
+    },
+    {
+        "display": "Vietnam",
+        "value":"vn"
+    },
+    {
+        "display": "USA",
+        "value": "us"
+    }
+]

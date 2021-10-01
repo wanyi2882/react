@@ -1,0 +1,23 @@
+
+[
+    {
+        "display": "Red",
+        "value": "red"
+    },
+    {
+        "display": "Green",
+        "value": "green"
+    },
+    {
+        "display": "Blue",
+        "value": "blue"
+    },
+    {
+        "display":"Purple",
+        "value":"purple"
+    },
+    {
+        "display":"Violet",
+        "value":"violet"
+    }
+]
