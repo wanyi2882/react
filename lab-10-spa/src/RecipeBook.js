@@ -1,43 +1,18 @@
-
-   
 import React from 'react'
 import AddNew from './components/AddNew'
 import Listing from './components/Listing'
+import axios from 'axios'
+
 export default class RecipeBook extends React.Component {
+
+    url = 'https://8888-copper-tahr-20npvdcv.ws-us18.gitpod.io/'
 
     state = {
         // if `active` variable is 'listing', then we show the listing component
         // if `active` variable is 'addnew', then we show the add new component
         'active': 'listing',
         'data': [
-            {
-                '_id':1,
-                'title':'Chicken Rice',
-                'ingredients':[
-                    'Chicken Broth',
-                    'Rice',
-                    'Chicken'
-                ]
-            },
-            {
-                '_id':2,
-                'title':'Duck Rice',
-                'ingredients':[
-                    'Duck',
-                    'Rice',
-                    'Soya Sauce'
-                ]
-            },
-            {
-                '_id':3,
-                'title':'Roti Prata',
-                'ingredients':[
-                    'Flour',
-                    'Egg',
-                    'Sugar',
-                    'Oil'
-                ]
-            }
+           
         ],
         'newTitle': '',
         'newIngredients':[]
@@ -77,6 +52,17 @@ export default class RecipeBook extends React.Component {
                 addNew={this.addNewRecipe}
             />
         }
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData = async() => {
+        let response = await axios.get(this.url + "recipes");
+        this.setState({
+            'data': response.data
+        })
     }
 
     setActive = (page) => {
